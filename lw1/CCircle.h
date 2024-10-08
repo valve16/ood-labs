@@ -6,7 +6,7 @@ class CCircle : public IShape
 public:
     CCircle(sf::Vector2f& center, float radius);
     void Draw(sf::RenderWindow& window) const override;
-
+    float GetRadius() const;
 private:
     sf::Vector2f m_center;
     int m_radius;

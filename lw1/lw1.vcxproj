@@ -166,6 +166,7 @@ sfml-network-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     <ClCompile Include="CCircle.cpp" />
     <ClCompile Include="CConvex.cpp" />
     <ClCompile Include="CRectangle.cpp" />
+    <ClCompile Include="CShapeDecorator.cpp" />
     <ClCompile Include="lw1.cpp" />
     <ClCompile Include="ShapeOp.cpp" />
   </ItemGroup>
@@ -187,6 +188,7 @@ sfml-network-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     <ClInclude Include="CConvex.h" />
     <ClInclude Include="CRectangle.h" />
     <ClInclude Include="IShape.h" />
+    <ClInclude Include="CShapeDecorator.h" />
     <ClInclude Include="ShapeOp.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

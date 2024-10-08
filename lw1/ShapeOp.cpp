@@ -1,5 +1,10 @@
 #include "ShapeOp.h"
 using namespace sf;
+ 
+const std::string RECT_TYPE = "RECTANGLE";
+const std::string TRIANGLE_TYPE = "TRIANGLE";
+const std::string CIRC_TYPE = "CIRCLE";
+const char EQ_SIGN = '=';
 
 ShapeOp::ShapeOp(const std::string& filename, sf::RenderWindow& window)
 	: m_window(window)
@@ -8,10 +13,12 @@ ShapeOp::ShapeOp(const std::string& filename, sf::RenderWindow& window)
 
 }
 
-std::vector<IShape*> ShapeOp::ReadShapesFromFileToVector(const std::string& filename)
+std::vector<std::unique_ptr<IShape>> ShapeOp::ReadShapesFromFileToVector(const std::string& filename)
 {
     std::ifstream file(filename);
-    std::vector<IShape*> shapes;
+    //std::vector<IShape*> shapes;
+    std::vector<std::unique_ptr<IShape>> shapes;
+
     if (!file.is_open())
     {
         std::cerr << "Ошибка открытия файла: " << filename << std::endl;
@@ -30,7 +37,7 @@ std::vector<IShape*> ShapeOp::ReadShapesFromFileToVector(const std::string& file
 
         // Чтение типа фигуры
         std::getline(iss, shapeType, ':');
-        if (shapeType == "TRIANGLE")
+        if (shapeType == TRIANGLE_TYPE)
         {
             std::vector<sf::Vector2f> points;
             points.resize(3);
@@ -41,41 +48,45 @@ std::vector<IShape*> ShapeOp::ReadShapesFromFileToVector(const std::string& file
                 std::istringstream pointStream(line);
                 pointStream >> points[i].x >> ignore >> points[i].y;
             }
-            shapes.push_back(new CConvex(points[0], points[1], points[2]));
+            shapes.push_back(std::make_unique<CConvex>(points[0], points[1], points[2]));
         }
-        else if (shapeType == "RECTANGLE") {
+        else if (shapeType == RECT_TYPE)
+        {
             std::vector<sf::Vector2f> points;
             points.resize(2);
             for (int i = 0; i <= 1; i++)
             {
-                size_t pos = line.find("=");
+                size_t pos = line.find(EQ_SIGN);
                 line = line.substr(pos + 1);
                 std::istringstream pointStream(line);
                 pointStream >> points[i].x >> ignore >> points[i].y;
             }
-            shapes.push_back(new CRectangle(points[0], points[1]));
+            shapes.push_back(std::make_unique<CRectangle>(points[0], points[1]));
         }
-        else if (shapeType == "CIRCLE") {
+        else if (shapeType == CIRC_TYPE)
+        {
             sf::Vector2f center;
             float radius;
 
             // Чтение C и R
-            size_t pos = line.find("=");
+            size_t pos = line.find(EQ_SIGN);
             line = line.substr(pos + 1);
             std::istringstream pointStream(line);
             pointStream >> center.x >> ignore >> center.y;
 
-            pos = line.find("=");
+            pos = line.find(EQ_SIGN);
             line = line.substr(pos);
             std::istringstream radiusStream(line);
             radiusStream >> ignore >> radius;
-            shapes.push_back(new CCircle(center, radius));
+
+            // Перемещаем объект в вектор
+            shapes.push_back(std::make_unique<CCircle>(center, radius));
         }
     };
     return shapes;
 }
 
-void ShapeOp::RenderShapesFromVector(std::vector<IShape*>& shapes)
+void ShapeOp::RenderShapesFromVector(std::vector<std::unique_ptr<IShape>>& shapes)
 {
     while (m_window.isOpen())
     {
@@ -93,4 +104,39 @@ void ShapeOp::RenderShapesFromVector(std::vector<IShape*>& shapes)
         }
         m_window.display();
     }
+}
+
+void ShapeOp::WriteShapesToFile(const std::vector<std::unique_ptr<IShape>>& shapes, const std::string& filename)
+{
+    std::ofstream file(filename);
+    if (!file.is_open())
+    {
+        std::cerr << "Ошибка открытия файла для записи: " << filename << std::endl;
+        return;
+    }
+
+    for (const auto& shape : shapes)
+    {
+        // Создайте декоратор без перемещения уникального указателя
+        if (auto circle = dynamic_cast<CCircle*>(shape.get()))
+        {
+            // Запись круга в файл
+            CShapeDecorator decShape(std::make_unique<CCircle>(*circle));
+            file << CIRC_TYPE << ": P=" << decShape.GetPerimeter() << "; S=" << decShape.GetArea() << "\n";
+        }
+        else if (auto rect = dynamic_cast<CRectangle*>(shape.get()))
+        {
+            // Запись прямоугольника в файл
+            CShapeDecorator decShape(std::make_unique<CRectangle>(*rect));
+            file << RECT_TYPE << ": P=" << decShape.GetPerimeter() << "; S=" << decShape.GetArea() << "\n";
+        }
+        else if (auto conv = dynamic_cast<CConvex*>(shape.get()))
+        {
+            // Запись выпуклого многоугольника (треугольника) в файл
+            CShapeDecorator decShape(std::make_unique<CConvex>(*conv));
+            file << TRIANGLE_TYPE <<": P=" << decShape.GetPerimeter() << "; S=" << decShape.GetArea() << "\n";
+        };
+    }
+
+    file.close(); // Закрываем файл
 }

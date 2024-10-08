@@ -22,3 +22,8 @@ void CConvex::Draw(sf::RenderWindow& window) const
 {
 	window.draw(m_convexShape);
 }
+
+sf::ConvexShape CConvex::ShapeType()
+{
+	return m_convexShape;
+}

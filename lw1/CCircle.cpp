@@ -13,3 +13,8 @@ void CCircle::Draw(sf::RenderWindow& window) const
 {
 	window.draw(m_circleShape);
 }
+
+float CCircle::GetRadius() const
+{
+	return m_radius;
+}
