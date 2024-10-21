@@ -1,5 +1,7 @@
 #include "CRectangle.h"
 
+const std::string NAME = "RECTANGLE";
+
 CRectangle::CRectangle(sf::Vector2f& firstPoint, sf::Vector2f& secondPoint)
 	: m_p1(firstPoint)
     , m_p2(secondPoint)
@@ -27,4 +29,21 @@ void CRectangle::Draw(sf::RenderWindow& window) const
 sf::RectangleShape CRectangle::ShapeType()
 {
     return m_rectangleShape;
+}
+
+std::string CRectangle::ToString() const
+{
+    return NAME;
+}
+
+float CRectangle::GetWidth() const
+{
+    float width = m_rectangleShape.getSize().x;
+    return width;
+}
+
+float CRectangle::GetHeight() const
+{
+    float height = m_rectangleShape.getSize().y;
+    return height;
 }

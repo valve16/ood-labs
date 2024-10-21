@@ -7,6 +7,7 @@ public:
     CCircle(sf::Vector2f& center, float radius);
     void Draw(sf::RenderWindow& window) const override;
     float GetRadius() const;
+    std::string ToString() const override;
 private:
     sf::Vector2f m_center;
     int m_radius;

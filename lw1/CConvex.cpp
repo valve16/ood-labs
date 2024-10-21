@@ -1,5 +1,7 @@
 #include "CConvex.h"
 
+const std::string NAME = "CONVEX";
+
 CConvex::CConvex(sf::Vector2f& firstPoint, sf::Vector2f& secondPoint, sf::Vector2f& thirdPoint)
 	: m_p1(firstPoint)
 	, m_p2(secondPoint)
@@ -26,4 +28,24 @@ void CConvex::Draw(sf::RenderWindow& window) const
 sf::ConvexShape CConvex::ShapeType()
 {
 	return m_convexShape;
+}
+
+std::string CConvex::ToString() const
+{
+	return NAME;
+}
+
+sf::Vector2f CConvex::GetFirstPoint() const
+{
+	return m_p1;
+}
+
+sf::Vector2f CConvex::GetSecondPoint() const
+{
+	return m_p2;
+}
+
+sf::Vector2f CConvex::GetThirdPoint() const
+{
+	return m_p3;
 }

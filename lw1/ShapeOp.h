@@ -3,6 +3,9 @@
 #include "CConvex.h"
 #include "CRectangle.h"
 #include "CShapeDecorator.h"
+#include "CCircleDecorator.h"
+#include "CRectangleDecorator.h"
+#include "CTriangleDecorator.h"
 #include <SFML/Graphics.hpp>
 #include <fstream>
 #include <sstream>
@@ -15,9 +18,9 @@ class ShapeOp
 {
 public:
 	ShapeOp(const std::string& filename, sf::RenderWindow& window);
-	std::vector<std::unique_ptr<IShape>> ReadShapesFromFileToVector(const std::string& filename);
-	void RenderShapesFromVector(std::vector<std::unique_ptr<IShape>>& shapes);
-	void WriteShapesToFile(const std::vector<std::unique_ptr<IShape>>& shapes, const std::string& filename);
+	std::vector<std::shared_ptr<IShape>> ReadShapesFromFileToVector(const std::string& filename);
+	void RenderShapesFromVector(std::vector<std::shared_ptr<IShape>>& shapes);
+	void WriteShapesToFile(std::vector<std::shared_ptr<IShape>>& shapes, const std::string& filename);
 private:
 	sf::RenderWindow& m_window;
 	std::string m_filename;

@@ -13,11 +13,11 @@ ShapeOp::ShapeOp(const std::string& filename, sf::RenderWindow& window)
 
 }
 
-std::vector<std::unique_ptr<IShape>> ShapeOp::ReadShapesFromFileToVector(const std::string& filename)
+std::vector<std::shared_ptr<IShape>> ShapeOp::ReadShapesFromFileToVector(const std::string& filename)
 {
     std::ifstream file(filename);
     //std::vector<IShape*> shapes;
-    std::vector<std::unique_ptr<IShape>> shapes;
+    std::vector<std::shared_ptr<IShape>> shapes;
 
     if (!file.is_open())
     {
@@ -86,7 +86,7 @@ std::vector<std::unique_ptr<IShape>> ShapeOp::ReadShapesFromFileToVector(const s
     return shapes;
 }
 
-void ShapeOp::RenderShapesFromVector(std::vector<std::unique_ptr<IShape>>& shapes)
+void ShapeOp::RenderShapesFromVector(std::vector<std::shared_ptr<IShape>>& shapes)
 {
     while (m_window.isOpen())
     {
@@ -106,7 +106,7 @@ void ShapeOp::RenderShapesFromVector(std::vector<std::unique_ptr<IShape>>& shape
     }
 }
 
-void ShapeOp::WriteShapesToFile(const std::vector<std::unique_ptr<IShape>>& shapes, const std::string& filename)
+void ShapeOp::WriteShapesToFile(std::vector<std::shared_ptr<IShape>>& shapes, const std::string& filename)
 {
     std::ofstream file(filename);
     if (!file.is_open())
@@ -115,28 +115,25 @@ void ShapeOp::WriteShapesToFile(const std::vector<std::unique_ptr<IShape>>& shap
         return;
     }
 
-    for (const auto& shape : shapes)
+    for (auto& shape : shapes)
     {
-        // Создайте декоратор без перемещения уникального указателя
-        if (auto circle = dynamic_cast<CCircle*>(shape.get()))
+        if (shape->ToString() == TRIANGLE_TYPE)
         {
-            // Запись круга в файл
-            CShapeDecorator decShape(std::make_unique<CCircle>(*circle));
-            file << CIRC_TYPE << ": P=" << decShape.GetPerimeter() << "; S=" << decShape.GetArea() << "\n";
+            shape = std::make_shared<CTriangleDecorator>(std::move(shape));
         }
-        else if (auto rect = dynamic_cast<CRectangle*>(shape.get()))
+        else if (shape->ToString() == RECT_TYPE)
         {
-            // Запись прямоугольника в файл
-            CShapeDecorator decShape(std::make_unique<CRectangle>(*rect));
-            file << RECT_TYPE << ": P=" << decShape.GetPerimeter() << "; S=" << decShape.GetArea() << "\n";
+            shape = std::make_shared<CRectangleDecorator>(std::move(shape));
         }
-        else if (auto conv = dynamic_cast<CConvex*>(shape.get()))
+        else if (shape->ToString() == CIRC_TYPE)
         {
-            // Запись выпуклого многоугольника (треугольника) в файл
-            CShapeDecorator decShape(std::make_unique<CConvex>(*conv));
-            file << TRIANGLE_TYPE <<": P=" << decShape.GetPerimeter() << "; S=" << decShape.GetArea() << "\n";
-        };
+            shape = std::make_shared<CCircleDecorator>(std::move(shape));
+        }
     }
 
+    for (auto const& shape : shapes)
+    {
+        file << shape->ToString() << std::endl;
+    }
     file.close(); // Закрываем файл
 }

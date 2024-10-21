@@ -18,7 +18,7 @@ int main()
 
     window.setVerticalSyncEnabled(true);
 
-    std::vector<std::unique_ptr<IShape>> shapes;
+    std::vector<std::shared_ptr<IShape>> shapes;
     ShapeOp operations("in.txt", window);
     shapes = operations.ReadShapesFromFileToVector("in.txt");
     operations.RenderShapesFromVector(shapes);

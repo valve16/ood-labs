@@ -11,8 +11,9 @@
 
 class IShape {
 public:
-    virtual ~IShape() = default;
+    virtual std::string ToString() const = 0;
     virtual void Draw(sf::RenderWindow& window) const = 0;
+    virtual ~IShape() = default;
 };
 
 #endif // ISHAPE_H

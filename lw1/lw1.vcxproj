@@ -164,9 +164,12 @@ sfml-network-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CCircle.cpp" />
+    <ClCompile Include="CCircleDecorator.cpp" />
     <ClCompile Include="CConvex.cpp" />
     <ClCompile Include="CRectangle.cpp" />
+    <ClCompile Include="CRectangleDecorator.cpp" />
     <ClCompile Include="CShapeDecorator.cpp" />
+    <ClCompile Include="CTriangleDecorator.cpp" />
     <ClCompile Include="lw1.cpp" />
     <ClCompile Include="ShapeOp.cpp" />
   </ItemGroup>
@@ -185,8 +188,11 @@ sfml-network-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CCircle.h" />
+    <ClInclude Include="CCircleDecorator.h" />
     <ClInclude Include="CConvex.h" />
     <ClInclude Include="CRectangle.h" />
+    <ClInclude Include="CRectangleDecorator.h" />
+    <ClInclude Include="CTriangleDecorator.h" />
     <ClInclude Include="IShape.h" />
     <ClInclude Include="CShapeDecorator.h" />
     <ClInclude Include="ShapeOp.h" />
