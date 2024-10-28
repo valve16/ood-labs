@@ -14,12 +14,16 @@ class IShape
 public:
     virtual std::string ToString() const = 0;
     virtual void Draw(sf::RenderWindow& window) const = 0;
-    virtual ~IShape() = default;
-    virtual bool IsSelected() const { return m_isSelected; }
-    virtual void SetSelected(bool selected) { m_isSelected = selected; }
+   
+    //virtual bool IsSelected() const { return m_isSelected; }
+    //virtual void SetSelected(bool selected) { m_isSelected = selected; }
     virtual bool IsPointInside(const sf::Vector2f& point) const = 0;
-protected:
-    bool m_isSelected = false;
+    virtual sf::FloatRect getBounds() const = 0;
+    virtual void Move(const sf::Vector2f& offset) = 0;
+
+    virtual ~IShape() = default;
+//protected:
+    //bool m_isSelected = false;
 };
 
 

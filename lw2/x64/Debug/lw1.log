@@ -1,0 +1,3 @@
+﻿  CShapeDecorator.cpp
+D:\ПГТУ\ood-labs\lw2\CShapeDecorator.h(34,60): warning C4552: "!=": результат выражения не используется
+  lw1.vcxproj -> D:\ПГТУ\ood-labs\lw2\x64\Debug\lw2.exe
