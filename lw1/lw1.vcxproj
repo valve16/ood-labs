@@ -193,7 +193,6 @@ sfml-network-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     <ClInclude Include="CRectangle.h" />
     <ClInclude Include="CRectangleDecorator.h" />
     <ClInclude Include="CTriangleDecorator.h" />
-    <ClInclude Include="CShapeComposite.h" />
     <ClInclude Include="IShape.h" />
     <ClInclude Include="CShapeDecorator.h" />
     <ClInclude Include="ShapeOp.h" />
