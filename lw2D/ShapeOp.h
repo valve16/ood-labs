@@ -22,6 +22,7 @@ public:
 	std::vector<std::shared_ptr<IShape>> ReadShapesFromFileToVector(const std::string& filename);
 	void RenderShapesFromVector(std::vector<std::shared_ptr<IShape>>& shapes);
 	void WriteShapesToFile(std::vector<std::shared_ptr<IShape>>& shapes, const std::string& filename);
+	// add branch
 private:
 	sf::RenderWindow& m_window;
 	std::string m_filename;
