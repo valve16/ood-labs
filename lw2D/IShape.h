@@ -26,6 +26,10 @@ public:
 
     virtual void Move(const sf::Vector2f& offset) = 0;
 
+    virtual void SetFillColor(const sf::Color& color) = 0;
+    virtual void SetOutlineColor(const sf::Color& color) = 0;
+    virtual void SetOutlineThickness(float thickness) = 0;
+
 protected:
     bool m_isSelected = false;
 };

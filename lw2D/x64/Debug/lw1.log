@@ -1,5 +1,46 @@
-﻿  CCompositeShape.cpp
-  ShapeOp.cpp
-  lw1.cpp
+﻿  AddOutlineThicknessCommand.cpp
+  AddOutlineThicknessCommand.h
+  Button.cpp
+  Button.h
+  CreateCircleCommand.cpp
+  CreateCircleCommand.h
+  CCircle.cpp
+D:\ПГТУ\ood-labs\lw2D\CCircle.cpp(7,12): warning C4244: инициализация: преобразование "float" в "int", возможна потеря данных
+D:\ПГТУ\ood-labs\lw2D\CCircle.cpp(9,26): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+D:\ПГТУ\ood-labs\lw2D\CCircle.cpp(21,9): warning C4244: return: преобразование "const int" в "float", возможна потеря данных
+  CCompositeShape.cpp
+  CConvex.cpp
+  CreateRectangleCommand.h
+  CreateTriangleCommand.h
+  DnDState.cpp
+  DragAndDropCommand.h
+  CFiguresHandler.cpp
+  Command.h
+  CRectangle.cpp
+  DnDState.h
+  FillOutlineCommand.h
+  FillOutlineState.cpp
+  FillOutlineState.h
   Создание кода...
+  Компиляция...
+  FillShapeCommand.h
+  FillShapeState.cpp
+  FillShapeState.h
+  lw1.cpp
+  ReduceThicknessCommand.h
+  SetBlueColorCommand.h
+  SetGreenColorCommand.h
+  SetRedColorCommand.h
+  ShapeOp.cpp
+  State.h
+  ToolBar.cpp
+  ToolBar.h
+  Создание кода...
+x64\Debug\AddOutlineThicknessCommand.obj : warning LNK4042: объект указан более одного раза; лишние не учитываются
+x64\Debug\Button.obj : warning LNK4042: объект указан более одного раза; лишние не учитываются
+x64\Debug\CreateCircleCommand.obj : warning LNK4042: объект указан более одного раза; лишние не учитываются
+x64\Debug\DnDState.obj : warning LNK4042: объект указан более одного раза; лишние не учитываются
+x64\Debug\FillOutlineState.obj : warning LNK4042: объект указан более одного раза; лишние не учитываются
+x64\Debug\FillShapeState.obj : warning LNK4042: объект указан более одного раза; лишние не учитываются
+x64\Debug\ToolBar.obj : warning LNK4042: объект указан более одного раза; лишние не учитываются
   lw1.vcxproj -> D:\ПГТУ\ood-labs\lw2D\x64\Debug\lw1.exe

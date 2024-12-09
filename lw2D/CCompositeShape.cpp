@@ -59,6 +59,15 @@ void CCompositeShape::Move(const sf::Vector2f& offset)
     }
 }
 
+void CCompositeShape::SetFillColor(const sf::Color& color)
+{
+    for (auto& shape : m_shapes)
+    {
+        shape->SetFillColor(color);
+        //std::cout << "moved";
+    }
+}
+
 std::string CCompositeShape::ToString() const {
     return "CompositeShape";
 }
@@ -66,4 +75,20 @@ std::string CCompositeShape::ToString() const {
 std::vector<std::shared_ptr<IShape>> CCompositeShape::GetShapes() const 
 {
     return m_shapes;
+}
+
+void CCompositeShape::SetOutlineColor(const sf::Color& color)
+{
+    for (auto& shape : m_shapes)
+    {
+        shape->SetOutlineColor(color);
+    }
+}
+
+void CCompositeShape::SetOutlineThickness(float thickness)
+{
+    for (auto& shape : m_shapes)
+    {
+        shape->SetOutlineThickness(thickness);
+    }
 }

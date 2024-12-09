@@ -62,3 +62,14 @@ void CCircle::Move(const sf::Vector2f& offset)
     m_center += offset;
     m_circleShape.setPosition(m_center);
 }
+void CCircle::SetFillColor(const sf::Color& color) {
+    m_circleShape.setFillColor(color);
+}
+
+void CCircle::SetOutlineColor(const sf::Color& color)  {
+    m_circleShape.setOutlineColor(color);
+}
+
+void CCircle::SetOutlineThickness(float thickness) {
+    m_circleShape.setOutlineThickness(thickness);
+}

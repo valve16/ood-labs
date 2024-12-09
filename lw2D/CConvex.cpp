@@ -79,3 +79,15 @@ void CConvex::Move(const sf::Vector2f& offset)
 {
 	m_convexShape.move(offset);
 }
+void CConvex::SetFillColor(const sf::Color& color) {
+	m_convexShape.setFillColor(color);
+}
+
+void CConvex::SetOutlineColor(const sf::Color& color) {
+
+	m_convexShape.setOutlineColor(color);
+}
+
+void CConvex::SetOutlineThickness(float thickness) {
+	m_convexShape.setOutlineThickness(thickness);
+}

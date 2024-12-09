@@ -163,16 +163,38 @@ sfml-network-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AddOutlineThicknessCommand.cpp" />
+    <ClCompile Include="AddOutlineThicknessCommand.h" />
+    <ClCompile Include="Button.cpp" />
+    <ClCompile Include="Button.h" />
+    <ClCompile Include="CreateCircleCommand.cpp" />
+    <ClCompile Include="CreateCircleCommand.h" />
     <ClCompile Include="CCircle.cpp" />
-    <ClCompile Include="CCircleDecorator.cpp" />
     <ClCompile Include="CCompositeShape.cpp" />
     <ClCompile Include="CConvex.cpp" />
+    <ClCompile Include="CreateRectangleCommand.h" />
+    <ClCompile Include="CreateTriangleCommand.h" />
+    <ClCompile Include="DnDState.cpp" />
+    <ClCompile Include="DragAndDropCommand.h" />
+    <ClCompile Include="CFiguresHandler.cpp" />
+    <ClCompile Include="Command.h" />
     <ClCompile Include="CRectangle.cpp" />
-    <ClCompile Include="CRectangleDecorator.cpp" />
-    <ClCompile Include="CShapeDecorator.cpp" />
-    <ClCompile Include="CTriangleDecorator.cpp" />
+    <ClCompile Include="DnDState.h" />
+    <ClCompile Include="FillOutlineCommand.h" />
+    <ClCompile Include="FillOutlineState.cpp" />
+    <ClCompile Include="FillOutlineState.h" />
+    <ClCompile Include="FillShapeCommand.h" />
+    <ClCompile Include="FillShapeState.cpp" />
+    <ClCompile Include="FillShapeState.h" />
     <ClCompile Include="lw1.cpp" />
+    <ClCompile Include="ReduceThicknessCommand.h" />
+    <ClCompile Include="SetBlueColorCommand.h" />
+    <ClCompile Include="SetGreenColorCommand.h" />
+    <ClCompile Include="SetRedColorCommand.h" />
     <ClCompile Include="ShapeOp.cpp" />
+    <ClCompile Include="State.h" />
+    <ClCompile Include="ToolBar.cpp" />
+    <ClCompile Include="ToolBar.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="openal32.dll" />
@@ -189,14 +211,11 @@ sfml-network-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CCircle.h" />
-    <ClInclude Include="CCircleDecorator.h" />
     <ClInclude Include="CCompositeShape.h" />
     <ClInclude Include="CConvex.h" />
+    <ClInclude Include="CFiguresHandler.h" />
     <ClInclude Include="CRectangle.h" />
-    <ClInclude Include="CRectangleDecorator.h" />
-    <ClInclude Include="CTriangleDecorator.h" />
     <ClInclude Include="IShape.h" />
-    <ClInclude Include="CShapeDecorator.h" />
     <ClInclude Include="ShapeOp.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

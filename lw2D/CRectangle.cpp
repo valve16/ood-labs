@@ -18,7 +18,7 @@ CRectangle::CRectangle(sf::Vector2f& firstPoint, sf::Vector2f& secondPoint)
     // Установка размеров и позиции прямоугольника
     m_rectangleShape.setSize(sf::Vector2f(width, height));
     m_rectangleShape.setPosition(position);
-    m_rectangleShape.setFillColor(sf::Color::Blue);  // Задаем цвет для наглядности
+    m_rectangleShape.setFillColor(sf::Color::Blue);  
 }
 
 void CRectangle::Draw(sf::RenderWindow& window) const
@@ -77,4 +77,16 @@ void CRectangle::DrawSelection(sf::RenderWindow& window) const {
 void CRectangle::Move(const sf::Vector2f& offset)
 {
     m_rectangleShape.move(offset);
+}
+
+void CRectangle::SetFillColor(const sf::Color& color) {
+    m_rectangleShape.setFillColor(color);
+}
+
+void CRectangle::SetOutlineColor(const sf::Color& color) {
+    m_rectangleShape.setOutlineColor(color);
+}
+
+void CRectangle::SetOutlineThickness(float thickness) {
+    m_rectangleShape.setOutlineThickness(thickness);
 }

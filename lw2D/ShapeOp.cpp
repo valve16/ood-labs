@@ -1,22 +1,31 @@
 #include "ShapeOp.h"
 using namespace sf;
- 
+
 const std::string RECT_TYPE = "RECTANGLE";
 const std::string TRIANGLE_TYPE = "TRIANGLE";
 const std::string CIRC_TYPE = "CIRCLE";
 const char EQ_SIGN = '=';
 
-ShapeOp::ShapeOp(const std::string& filename, sf::RenderWindow& window)
-	: m_window(window)
-	, m_filename(filename)
+ShapeOp& ShapeOp::GetInstance(sf::RenderWindow& window)
 {
+    static ShapeOp instance(window);
+    return instance;
+}
 
+ShapeOp::ShapeOp(sf::RenderWindow& window)
+    : m_window(window)
+{
+    m_figuresHandler = new CFiguresHandler(m_window);
+    m_toolbar = new Toolbar(new DragAndDropState(), m_window, m_figuresHandler);
+}
+
+ShapeOp::~ShapeOp()
+{
 }
 
 std::vector<std::shared_ptr<IShape>> ShapeOp::ReadShapesFromFileToVector(const std::string& filename)
 {
     std::ifstream file(filename);
-    //std::vector<IShape*> shapes;
     std::vector<std::shared_ptr<IShape>> shapes;
 
     if (!file.is_open())
@@ -28,14 +37,11 @@ std::vector<std::shared_ptr<IShape>> ShapeOp::ReadShapesFromFileToVector(const s
     std::string line;
     while (std::getline(file, line))
     {
-        /*std::istringstream iss(line);*/
-
         char ignore;
         line.erase(remove_if(line.begin(), line.end(), isspace), line.end());
         std::istringstream iss(line);
         std::string shapeType;
 
-        // Чтение типа фигуры
         std::getline(iss, shapeType, ':');
         if (shapeType == TRIANGLE_TYPE)
         {
@@ -68,7 +74,6 @@ std::vector<std::shared_ptr<IShape>> ShapeOp::ReadShapesFromFileToVector(const s
             sf::Vector2f center;
             float radius;
 
-            // Чтение C и R
             size_t pos = line.find(EQ_SIGN);
             line = line.substr(pos + 1);
             std::istringstream pointStream(line);
@@ -79,7 +84,6 @@ std::vector<std::shared_ptr<IShape>> ShapeOp::ReadShapesFromFileToVector(const s
             std::istringstream radiusStream(line);
             radiusStream >> ignore >> radius;
 
-            // Перемещаем объект в вектор
             shapes.push_back(std::make_unique<CCircle>(center, radius));
         }
     };
@@ -91,145 +95,76 @@ void ShapeOp::RenderShapesFromVector(std::vector<std::shared_ptr<IShape>>& shape
     bool isDragging = false;
     sf::Vector2f dragStart;
     sf::Vector2f dragOffset;
-
-    while (m_window.isOpen()) 
+    m_figuresHandler->CopyFigures(shapes);
+    shapes.clear();
+    while (m_window.isOpen())
     {
         sf::Event event;
-        while (m_window.pollEvent(event)) 
+        while (m_window.pollEvent(event))
         {
             if (event.type == sf::Event::Closed)
                 m_window.close();
 
-            if (event.type == sf::Event::MouseButtonPressed) 
+            if (event.type == sf::Event::MouseButtonPressed)
             {
-                if (event.mouseButton.button == sf::Mouse::Left) 
+                if (event.mouseButton.button == sf::Mouse::Left)
                 {
-                    sf::Vector2f mousePos = m_window.mapPixelToCoords(sf::Vector2i(event.mouseButton.x, event.mouseButton.y));
-                    for (auto& shape : shapes) 
+                    sf::Vector2i mousePosition(event.mouseButton.x, event.mouseButton.y);
+                    m_figuresHandler->SetCursorPosition(mousePosition);
+                    m_toolbar->SetCursorPosition(mousePosition);
+                    m_toolbar->PressToolButton();
+                   
+                    if (typeid(*m_toolbar->GetState()) == typeid(DragAndDropState))
                     {
-                        if (shape->Contains(mousePos)) 
-                        {
-                            if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)) 
-                            {
-                                shape->Select();
-                                //std::cout << "sel";
-                            }
-                            else 
-                            {
-                                for (auto& s : shapes) 
-                                {
-                                    s->Deselect();
-                                }
-                                shape->Select();
-                                //std::cout << shape->ToString() << " " << shape->IsSelected() << "; ";
-                            }
-                            isDragging = true;
-                            dragStart = mousePos;
-                            break;
-                        }
+                        isDragging = true;
+                        m_figuresHandler->SelectFigures();
                     }
+                    else 
+                    {
+                        m_figuresHandler->SelectFigures();
+                    }
+
                 }
             }
 
-            if (event.type == sf::Event::MouseButtonReleased) 
+            if (event.type == sf::Event::MouseButtonReleased)
             {
-                if (event.mouseButton.button == sf::Mouse::Left) 
+                if (event.mouseButton.button == sf::Mouse::Left)
                 {
                     isDragging = false;
                 }
             }
 
-            if (event.type == sf::Event::MouseMoved) 
+            if (event.type == sf::Event::MouseMoved)
             {
-                if (isDragging) 
+                if (isDragging)
                 {
-                    sf::Vector2f mousePos = m_window.mapPixelToCoords(sf::Vector2i(event.mouseMove.x, event.mouseMove.y));
-                    dragOffset = mousePos - dragStart;
-                    for (auto& shape : shapes) 
-                    {
-                        //std::cout << shape->ToString() << " " << shape->IsSelected() << "; ";
-                        if (shape->IsSelected()) 
-                        {
-                            shape->Move(dragOffset);
-                            //std::cout << "move";
-                        }
-                    }
-                    dragStart = mousePos;
+                    sf::Vector2i mousePosition(event.mouseMove.x, event.mouseMove.y);
+                    m_figuresHandler->SetCursorPosition(mousePosition);
+                    m_figuresHandler->Move();
                 }
             }
 
             if (event.type == sf::Event::KeyPressed) {
                 if (event.key.code == sf::Keyboard::G && sf::Keyboard::isKeyPressed(sf::Keyboard::LControl)) {
-                    auto composite = std::make_shared<CCompositeShape>();
-                    for (auto& shape : shapes) 
-                    {
-                        if (shape->IsSelected()) 
-                        {
-                            composite->AddShape(shape);
-                        }
-                    }
-
-                    shapes.erase(std::remove_if(shapes.begin(), shapes.end(),
-                        [](const std::shared_ptr<IShape>& shape) { return shape->IsSelected(); }),
-                        shapes.end());
-
-                    shapes.push_back(composite);
+                    m_figuresHandler->GroupFigures();
                 }
 
                 if (event.key.code == sf::Keyboard::U && sf::Keyboard::isKeyPressed(sf::Keyboard::LControl)) {
-                    std::vector<std::shared_ptr<IShape>> newShapes;
-                    for (auto& shape : shapes) {
-                        if (auto composite = std::dynamic_pointer_cast<CCompositeShape>(shape)) {
-                            for (auto& s : composite->GetShapes()) {
-                                newShapes.push_back(s);
-                            }
-                        }
-                        else {
-                            newShapes.push_back(shape);
-                        }
-                    }
-                    shapes = newShapes;
+                    m_figuresHandler->UngroupFigures();
                 }
             }
         }
 
         m_window.clear();
-        for (const auto& shape : shapes) {
-            shape->Draw(m_window);
-            shape->DrawSelection(m_window);
-        }
+        DrawApplication();
         m_window.display();
     }
 }
 
-void ShapeOp::WriteShapesToFile(std::vector<std::shared_ptr<IShape>>& shapes, const std::string& filename)
-{
-    std::ofstream file(filename);
-    if (!file.is_open())
-    {
-        std::cerr << "Ошибка открытия файла для записи: " << filename << std::endl;
-        return;
-    }
 
-    for (auto& shape : shapes)
-    {
-        if (shape->ToString() == TRIANGLE_TYPE)
-        {
-            shape = std::make_shared<CTriangleDecorator>(std::move(shape));
-        }
-        else if (shape->ToString() == RECT_TYPE)
-        {
-            shape = std::make_shared<CRectangleDecorator>(std::move(shape));
-        }
-        else if (shape->ToString() == CIRC_TYPE)
-        {
-            shape = std::make_shared<CCircleDecorator>(std::move(shape));
-        }
-    }
 
-    for (auto const& shape : shapes)
-    {
-        file << shape->ToString() << std::endl;
-    }
-    file.close(); // Закрываем файл
+void ShapeOp::DrawApplication() {
+    m_figuresHandler->Draw();
+    m_toolbar->Draw();
 }
