@@ -36,22 +36,10 @@
     <ClCompile Include="State.h">
       <Filter>Файлы заголовков</Filter>
     </ClCompile>
-    <ClCompile Include="ToolBar.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClCompile>
-    <ClCompile Include="DnDState.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClCompile>
     <ClCompile Include="FillOutlineCommand.h">
       <Filter>Файлы заголовков</Filter>
     </ClCompile>
-    <ClCompile Include="FillOutlineState.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClCompile>
     <ClCompile Include="FillShapeCommand.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClCompile>
-    <ClCompile Include="FillShapeState.h">
       <Filter>Файлы заголовков</Filter>
     </ClCompile>
     <ClCompile Include="ReduceThicknessCommand.h">
@@ -65,15 +53,6 @@
     </ClCompile>
     <ClCompile Include="SetRedColorCommand.h">
       <Filter>Файлы заголовков</Filter>
-    </ClCompile>
-    <ClCompile Include="ToolBar.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="FillOutlineState.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="FillShapeState.cpp">
-      <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="FillOutlineVisitor.cpp">
       <Filter>Исходные файлы</Filter>
@@ -96,10 +75,19 @@
     <ClCompile Include="CreateCircleCommand.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
     <ClCompile Include="DnDState.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Button.cpp">
+    <ClCompile Include="ToolBar.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="FillShapeState.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="FillOutlineState.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
@@ -172,6 +160,18 @@
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="CreateRectangleCommand.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="DnDState.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="ToolBar.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="FillShapeState.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="FillOutlineState.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

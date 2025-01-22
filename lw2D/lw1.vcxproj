@@ -172,15 +172,12 @@ sfml-network-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     <ClCompile Include="CreateCircleCommand.cpp" />
     <ClCompile Include="CRectangle.cpp" />
     <ClCompile Include="DnDState.cpp" />
-    <ClCompile Include="lw1.cpp" />
-    <ClCompile Include="DnDState.h" />
-    <ClCompile Include="FillOutlineCommand.h" />
     <ClCompile Include="FillOutlineState.cpp" />
-    <ClCompile Include="FillOutlineState.h" />
+    <ClCompile Include="FillShapeState.cpp" />
+    <ClCompile Include="lw1.cpp" />
+    <ClCompile Include="FillOutlineCommand.h" />
     <ClCompile Include="FillOutlineVisitor.cpp" />
     <ClCompile Include="FillShapeCommand.h" />
-    <ClCompile Include="FillShapeState.cpp" />
-    <ClCompile Include="FillShapeState.h" />
     <ClCompile Include="FillVisitor.cpp" />
     <ClCompile Include="Memento.cpp" />
     <ClCompile Include="ReduceThicknessCommand.h" />
@@ -191,7 +188,6 @@ sfml-network-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     <ClCompile Include="ChangeOutlineThicknessVisitor.cpp" />
     <ClCompile Include="State.h" />
     <ClCompile Include="ToolBar.cpp" />
-    <ClCompile Include="ToolBar.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="openal32.dll" />
@@ -219,13 +215,17 @@ sfml-network-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     <ClInclude Include="CreateRectangleCommand.h" />
     <ClInclude Include="CreateTriangleCommand.h" />
     <ClInclude Include="CRectangle.h" />
+    <ClInclude Include="DnDState.h" />
     <ClInclude Include="DragAndDropCommand.h" />
+    <ClInclude Include="FillOutlineState.h" />
     <ClInclude Include="FillOutlineVisitor.h" />
+    <ClInclude Include="FillShapeState.h" />
     <ClInclude Include="FillVisitor.h" />
     <ClInclude Include="IShape.h" />
     <ClInclude Include="IVisitor.h" />
     <ClInclude Include="Memento.h" />
     <ClInclude Include="ShapeOp.h" />
+    <ClInclude Include="ToolBar.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
