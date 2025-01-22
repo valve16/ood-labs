@@ -8,8 +8,7 @@
 #include <vector>
 #include <string>
 #include <iostream>
-
-class IShape 
+class IShape
 {
 public:
     virtual std::string ToString() const = 0;
@@ -26,9 +25,13 @@ public:
 
     virtual void Move(const sf::Vector2f& offset) = 0;
 
+    virtual void SetFillColor(const sf::Color& color) = 0;
+    virtual void SetOutlineColor(const sf::Color& color) = 0;
+    virtual void SetOutlineThickness(float thickness) = 0;
+
 protected:
     bool m_isSelected = false;
 };
 
 
-#endif // ISHAPE_H
+#endif // ISHAPE_HAPE_H

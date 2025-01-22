@@ -1,4 +1,4 @@
-
+#pragma once
 #include "IShape.h"
 
 class CRectangle : public IShape 
@@ -16,6 +16,9 @@ public:
     void Select() override;
     void Deselect() override;
     void DrawSelection(sf::RenderWindow& window) const override;
+    void SetFillColor(const sf::Color& color) override;
+    void SetOutlineColor(const sf::Color& color) override;
+    void SetOutlineThickness(float thickness) override;
 
     void Move(const sf::Vector2f& offset) override;
 

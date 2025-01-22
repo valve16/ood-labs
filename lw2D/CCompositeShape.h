@@ -12,6 +12,10 @@ public:
     void Deselect() override;
     void DrawSelection(sf::RenderWindow& window) const override;
     void Move(const sf::Vector2f& offset);
+    void SetFillColor(const sf::Color& color) override;
+    void SetOutlineColor(const sf::Color& color) override;
+    void SetOutlineThickness(float thickness) override;
+
     std::string ToString() const override;
     std::vector<std::shared_ptr<IShape>> GetShapes() const;
 

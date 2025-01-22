@@ -1,6 +1,6 @@
 #include "CCompositeShape.h"
 
-void CCompositeShape::AddShape(std::shared_ptr<IShape> shape) 
+void CCompositeShape::AddShape(std::shared_ptr<IShape> shape)
 {
     m_shapes.push_back(shape);
 }
@@ -26,17 +26,17 @@ bool CCompositeShape::Contains(const sf::Vector2f& point) const {
 
 void CCompositeShape::Select() {
     m_isSelected = true;
-    for (auto& shape : m_shapes) 
+    for (auto& shape : m_shapes)
     {
         shape->Select();
-        std::cout << shape->ToString() << " " << shape->IsSelected() << "; " << m_isSelected <<"\n";
+        std::cout << shape->ToString() << " " << shape->IsSelected() << "; " << m_isSelected << "\n";
     }
 }
 
 void CCompositeShape::Deselect()
 {
     m_isSelected = false;
-    for (auto& shape : m_shapes) 
+    for (auto& shape : m_shapes)
     {
         shape->Deselect();
     }
@@ -50,11 +50,20 @@ void CCompositeShape::DrawSelection(sf::RenderWindow& window) const {
     }
 }
 
-void CCompositeShape::Move(const sf::Vector2f& offset) 
+void CCompositeShape::Move(const sf::Vector2f& offset)
 {
-    for (auto& shape : m_shapes) 
+    for (auto& shape : m_shapes)
     {
         shape->Move(offset);
+        //std::cout << "moved";
+    }
+}
+
+void CCompositeShape::SetFillColor(const sf::Color& color)
+{
+    for (auto& shape : m_shapes)
+    {
+        shape->SetFillColor(color);
         //std::cout << "moved";
     }
 }
@@ -63,7 +72,23 @@ std::string CCompositeShape::ToString() const {
     return "CompositeShape";
 }
 
-std::vector<std::shared_ptr<IShape>> CCompositeShape::GetShapes() const 
+std::vector<std::shared_ptr<IShape>> CCompositeShape::GetShapes() const
 {
     return m_shapes;
+}
+
+void CCompositeShape::SetOutlineColor(const sf::Color& color)
+{
+    for (auto& shape : m_shapes)
+    {
+        shape->SetOutlineColor(color);
+    }
+}
+
+void CCompositeShape::SetOutlineThickness(float thickness)
+{
+    for (auto& shape : m_shapes)
+    {
+        shape->SetOutlineThickness(thickness);
+    }
 }

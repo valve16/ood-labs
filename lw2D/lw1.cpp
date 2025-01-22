@@ -13,15 +13,14 @@ using namespace sf;
 
 int main()
 {
-
-    RenderWindow window(VideoMode(400, 400), L"Новый проект", Style::Default);
-
+    RenderWindow window(VideoMode(1500, 1000), L"Новый проект", Style::Default);
     window.setVerticalSyncEnabled(true);
 
+    ShapeOp& operations = ShapeOp::GetInstance(window);
+
     std::vector<std::shared_ptr<IShape>> shapes;
-    ShapeOp operations("in.txt", window);
     shapes = operations.ReadShapesFromFileToVector("in.txt");
     operations.RenderShapesFromVector(shapes);
-    operations.WriteShapesToFile(shapes, "out.txt");
+
     return 0;
 }
