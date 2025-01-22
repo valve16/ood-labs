@@ -145,6 +145,11 @@ void CFiguresHandler::Undo()
 	}
 }
 
+std::vector<std::shared_ptr<IShape>> CFiguresHandler::GetFigures() const
+{
+	return m_figures;
+}
+
 //void CFiguresHandler::UpdateFrameBound() {
 //	if (!m_selectedFigures.empty()) {
 //		float left = std::numeric_limits<float>::max();

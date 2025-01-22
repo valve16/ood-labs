@@ -41,7 +41,7 @@ public:
 	void SaveState();
 	void Undo();
 
-	std::vector<IShape*> GetFigures() const;
+	std::vector<std::shared_ptr<IShape>> GetFigures() const;
 private:
 	std::vector<std::shared_ptr<IShape>> m_figures;
 	//std::unordered_set<std::shared_ptr<IShape>> m_selectedFigures;

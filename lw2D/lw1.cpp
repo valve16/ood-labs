@@ -7,7 +7,8 @@
 #include <vector>
 #include <string>
 #include <iostream>
-
+#include "SaveTextFileStrategy.h"
+#include "SaveBinStrategy.h"
 using namespace sf;
 
 
@@ -21,6 +22,13 @@ int main()
     std::vector<std::shared_ptr<IShape>> shapes;
     shapes = operations.ReadShapesFromFileToVector("in.txt");
     operations.RenderShapesFromVector(shapes);
+
+    CSaveTextFileStrategy textSaver;
+    std::cout << shapes.size();
+    textSaver.Save("output_text", shapes);
+
+    CSaveBinStrategy binSaver;
+    binSaver.Save("output_bin", shapes);
 
     return 0;
 }

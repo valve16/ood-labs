@@ -26,6 +26,11 @@ std::string CCircle::ToString() const
     return NAME;
 }
 
+sf::CircleShape CCircle::GetCircle() const
+{
+    return m_circleShape;
+}
+
 void CCircle::Select()
 {
     m_isSelected = true;

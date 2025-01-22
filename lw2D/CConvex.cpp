@@ -35,6 +35,11 @@ std::string CConvex::ToString() const
 	return NAME;
 }
 
+sf::ConvexShape CConvex::GetConvex()
+{
+	return m_convexShape;
+}
+
 sf::Vector2f CConvex::GetFirstPoint() const
 {
 	return m_p1;

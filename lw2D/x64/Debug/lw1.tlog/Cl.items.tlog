@@ -16,6 +16,9 @@ D:\ПГТУ\ood-labs\lw2D\FillShapeCommand.h;D:\ПГТУ\ood-labs\lw2D\x64\Debug
 D:\ПГТУ\ood-labs\lw2D\FillVisitor.cpp;D:\ПГТУ\ood-labs\lw2D\x64\Debug\FillVisitor.obj
 D:\ПГТУ\ood-labs\lw2D\Memento.cpp;D:\ПГТУ\ood-labs\lw2D\x64\Debug\Memento.obj
 D:\ПГТУ\ood-labs\lw2D\ReduceThicknessCommand.h;D:\ПГТУ\ood-labs\lw2D\x64\Debug\ReduceThicknessCommand.obj
+D:\ПГТУ\ood-labs\lw2D\SaveBinStrategy.cpp;D:\ПГТУ\ood-labs\lw2D\x64\Debug\SaveBinStrategy.obj
+D:\ПГТУ\ood-labs\lw2D\SaveFileStrategy.cpp;D:\ПГТУ\ood-labs\lw2D\x64\Debug\SaveFileStrategy.obj
+D:\ПГТУ\ood-labs\lw2D\SaveTextFileStrategy.cpp;D:\ПГТУ\ood-labs\lw2D\x64\Debug\SaveTextFileStrategy.obj
 D:\ПГТУ\ood-labs\lw2D\SetBlueColorCommand.h;D:\ПГТУ\ood-labs\lw2D\x64\Debug\SetBlueColorCommand.obj
 D:\ПГТУ\ood-labs\lw2D\SetGreenColorCommand.h;D:\ПГТУ\ood-labs\lw2D\x64\Debug\SetGreenColorCommand.obj
 D:\ПГТУ\ood-labs\lw2D\SetRedColorCommand.h;D:\ПГТУ\ood-labs\lw2D\x64\Debug\SetRedColorCommand.obj

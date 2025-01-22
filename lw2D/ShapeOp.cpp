@@ -109,7 +109,10 @@ void ShapeOp::RenderShapesFromVector(std::vector<std::shared_ptr<IShape>>& shape
         while (m_window.pollEvent(event)) 
         {
             if (event.type == sf::Event::Closed)
+            {
+                shapes = m_figuresHandler->GetFigures();
                 m_window.close();
+            }
 
             if (event.type == sf::Event::MouseButtonPressed) 
             {

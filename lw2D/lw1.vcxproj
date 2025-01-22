@@ -181,6 +181,9 @@ sfml-network-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     <ClCompile Include="FillVisitor.cpp" />
     <ClCompile Include="Memento.cpp" />
     <ClCompile Include="ReduceThicknessCommand.h" />
+    <ClCompile Include="SaveBinStrategy.cpp" />
+    <ClCompile Include="SaveFileStrategy.cpp" />
+    <ClCompile Include="SaveTextFileStrategy.cpp" />
     <ClCompile Include="SetBlueColorCommand.h" />
     <ClCompile Include="SetGreenColorCommand.h" />
     <ClCompile Include="SetRedColorCommand.h" />
@@ -224,6 +227,9 @@ sfml-network-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     <ClInclude Include="IShape.h" />
     <ClInclude Include="IVisitor.h" />
     <ClInclude Include="Memento.h" />
+    <ClInclude Include="SaveBinStrategy.h" />
+    <ClInclude Include="SaveFileStrategy.h" />
+    <ClInclude Include="SaveTextFileStrategy.h" />
     <ClInclude Include="ShapeOp.h" />
     <ClInclude Include="ToolBar.h" />
   </ItemGroup>

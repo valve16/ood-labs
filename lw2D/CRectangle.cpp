@@ -26,6 +26,11 @@ void CRectangle::Draw(sf::RenderWindow& window) const
 	window.draw(m_rectangleShape);
 }
 
+sf::RectangleShape CRectangle::GetRectangle()
+{
+    return m_rectangleShape;
+}
+
 sf::RectangleShape CRectangle::ShapeType()
 {
     return m_rectangleShape;

@@ -7,7 +7,7 @@ public:
     CRectangle(sf::Vector2f& firstPoint, sf::Vector2f& secondPoint);
 
     void Draw(sf::RenderWindow& window) const override;
-
+    sf::RectangleShape GetRectangle();
     sf::RectangleShape ShapeType();
 
     std::string ToString() const override;

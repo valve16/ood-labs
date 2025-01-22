@@ -8,6 +8,7 @@ public:
     void Draw(sf::RenderWindow& window) const override;
     sf::ConvexShape ShapeType();
     std::string ToString() const override;
+    sf::ConvexShape GetConvex();
 
     bool Contains(const sf::Vector2f& point) const override;
     void Select() override;

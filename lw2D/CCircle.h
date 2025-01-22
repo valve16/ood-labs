@@ -8,11 +8,13 @@ public:
     void Draw(sf::RenderWindow& window) const override;
     float GetRadius() const;
     std::string ToString() const override;
+    sf::CircleShape GetCircle() const;
 
     bool Contains(const sf::Vector2f& point) const override;
     void Select() override;
     void Deselect() override;
     void DrawSelection(sf::RenderWindow& window) const override;
+
 
     void Move(const sf::Vector2f& offset) override;
     void SetFillColor(const sf::Color& color) override;
