@@ -77,4 +77,20 @@ void CRectangle::DrawSelection(sf::RenderWindow& window) const {
 void CRectangle::Move(const sf::Vector2f& offset)
 {
     m_rectangleShape.move(offset);
+<<<<<<< Updated upstream
+=======
+}
+
+void CRectangle::SetFillColor(const sf::Color& color) {
+    m_rectangleShape.setFillColor(color);
+}
+
+void CRectangle::SetOutlineColor(const sf::Color& color) {
+    m_rectangleShape.setOutlineColor(color);
+}
+
+void CRectangle::SetOutlineThickness(float thickness) {
+    printf("Rec");
+    m_rectangleShape.setOutlineThickness(thickness);
+>>>>>>> Stashed changes
 }

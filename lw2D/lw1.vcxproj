@@ -168,11 +168,34 @@ sfml-network-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     <ClCompile Include="CCompositeShape.cpp" />
     <ClCompile Include="CConvex.cpp" />
     <ClCompile Include="CRectangle.cpp" />
+<<<<<<< Updated upstream
     <ClCompile Include="CRectangleDecorator.cpp" />
     <ClCompile Include="CShapeDecorator.cpp" />
     <ClCompile Include="CTriangleDecorator.cpp" />
     <ClCompile Include="lw1.cpp" />
     <ClCompile Include="ShapeOp.cpp" />
+=======
+    <ClCompile Include="DnDState.h" />
+    <ClCompile Include="FillOutlineCommand.h" />
+    <ClCompile Include="FillOutlineState.cpp" />
+    <ClCompile Include="FillOutlineState.h" />
+    <ClCompile Include="FillOutlineVisitor.cpp" />
+    <ClCompile Include="FillShapeCommand.h" />
+    <ClCompile Include="FillShapeState.cpp" />
+    <ClCompile Include="FillShapeState.h" />
+    <ClCompile Include="FillVisitor.cpp" />
+    <ClCompile Include="lw1.cpp" />
+    <ClCompile Include="Memento.cpp" />
+    <ClCompile Include="ReduceThicknessCommand.h" />
+    <ClCompile Include="SetBlueColorCommand.h" />
+    <ClCompile Include="SetGreenColorCommand.h" />
+    <ClCompile Include="SetRedColorCommand.h" />
+    <ClCompile Include="ShapeOp.cpp" />
+    <ClCompile Include="ChangeOutlineThicknessVisitor.cpp" />
+    <ClCompile Include="State.h" />
+    <ClCompile Include="ToolBar.cpp" />
+    <ClCompile Include="ToolBar.h" />
+>>>>>>> Stashed changes
   </ItemGroup>
   <ItemGroup>
     <None Include="openal32.dll" />
@@ -192,11 +215,22 @@ sfml-network-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     <ClInclude Include="CCircleDecorator.h" />
     <ClInclude Include="CCompositeShape.h" />
     <ClInclude Include="CConvex.h" />
+<<<<<<< Updated upstream
     <ClInclude Include="CRectangle.h" />
     <ClInclude Include="CRectangleDecorator.h" />
     <ClInclude Include="CTriangleDecorator.h" />
     <ClInclude Include="IShape.h" />
     <ClInclude Include="CShapeDecorator.h" />
+=======
+    <ClInclude Include="CFiguresHandler.h" />
+    <ClInclude Include="ChangeOutlineThicknessVisitor.h" />
+    <ClInclude Include="CRectangle.h" />
+    <ClInclude Include="FillOutlineVisitor.h" />
+    <ClInclude Include="FillVisitor.h" />
+    <ClInclude Include="IShape.h" />
+    <ClInclude Include="IVisitor.h" />
+    <ClInclude Include="Memento.h" />
+>>>>>>> Stashed changes
     <ClInclude Include="ShapeOp.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

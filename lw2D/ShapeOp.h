@@ -13,7 +13,18 @@
 #include <vector>
 #include <string>
 #include <iostream>
+<<<<<<< Updated upstream
 
+=======
+#include "CFiguresHandler.h"
+#include "ToolBar.h"
+#include "DnDState.h"
+#include "FillOutlineState.h"
+#include "FillShapeState.h"
+#include "FillVisitor.h"
+#include "FillOutlineVisitor.h"
+#include "ChangeOutlineThicknessVisitor.h"
+>>>>>>> Stashed changes
 
 class ShapeOp
 {

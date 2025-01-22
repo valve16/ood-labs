@@ -104,6 +104,7 @@ void ShapeOp::RenderShapesFromVector(std::vector<std::shared_ptr<IShape>>& shape
             {
                 if (event.mouseButton.button == sf::Mouse::Left) 
                 {
+<<<<<<< Updated upstream
                     sf::Vector2f mousePos = m_window.mapPixelToCoords(sf::Vector2i(event.mouseButton.x, event.mouseButton.y));
                     for (auto& shape : shapes) 
                     {
@@ -128,6 +129,34 @@ void ShapeOp::RenderShapesFromVector(std::vector<std::shared_ptr<IShape>>& shape
                             break;
                         }
                     }
+=======
+                    m_figuresHandler->SaveState();
+
+                    sf::Vector2i mousePosition(event.mouseButton.x, event.mouseButton.y);
+                    m_figuresHandler->SetCursorPosition(mousePosition);
+                    m_toolbar->SetCursorPosition(mousePosition);
+                    m_toolbar->PressToolButton();
+                   
+                    m_figuresHandler->SelectFigures();
+
+                    if (typeid(*m_toolbar->GetState()) == typeid(DragAndDropState))
+                    {
+                        isDragging = true;
+                        //m_figuresHandler->SelectFigures();
+                    }
+                    else if (typeid(*m_toolbar->GetState()) == typeid(FillShapeState))
+                    {
+                        //m_figuresHandler->SelectFigures();
+                        m_figuresHandler->Accept(new FillVisitor(m_toolbar->GetColor()));
+                    }
+                    else if (typeid(*m_toolbar->GetState()) == typeid(FillOutlineState))
+                    {
+                        //m_figuresHandler->SelectFigures();
+                        m_figuresHandler->Accept(new FillOutlineVisitor(m_toolbar->GetColor()));
+                        m_figuresHandler->Accept(new ChangeOutlineThicknessVisitor(m_toolbar->GetOutlineThickness()));
+                    }
+
+>>>>>>> Stashed changes
                 }
             }
 
@@ -143,6 +172,7 @@ void ShapeOp::RenderShapesFromVector(std::vector<std::shared_ptr<IShape>>& shape
             {
                 if (isDragging) 
                 {
+<<<<<<< Updated upstream
                     sf::Vector2f mousePos = m_window.mapPixelToCoords(sf::Vector2i(event.mouseMove.x, event.mouseMove.y));
                     dragOffset = mousePos - dragStart;
                     for (auto& shape : shapes) 
@@ -155,6 +185,12 @@ void ShapeOp::RenderShapesFromVector(std::vector<std::shared_ptr<IShape>>& shape
                         }
                     }
                     dragStart = mousePos;
+=======
+                    
+                    sf::Vector2i mousePosition(event.mouseMove.x, event.mouseMove.y);
+                    m_figuresHandler->SetCursorPosition(mousePosition);
+                    m_figuresHandler->Move();
+>>>>>>> Stashed changes
                 }
             }
 
@@ -189,6 +225,9 @@ void ShapeOp::RenderShapesFromVector(std::vector<std::shared_ptr<IShape>>& shape
                         }
                     }
                     shapes = newShapes;
+                }
+                if (event.key.code == sf::Keyboard::Z && sf::Keyboard::isKeyPressed(sf::Keyboard::LControl)) {
+                    m_figuresHandler->Undo();
                 }
             }
         }
