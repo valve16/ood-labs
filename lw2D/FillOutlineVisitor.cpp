@@ -2,7 +2,7 @@
 
 FillOutlineVisitor::FillOutlineVisitor(sf::Color color) :m_color(color) {}
 
-void FillOutlineVisitor::VisitFigure(std::shared_ptr<IShape> decorator) 
+void FillOutlineVisitor::VisitFigure(std::shared_ptr<IShape> shape)
 {
-	decorator->SetOutlineColor(m_color);
+	shape->SetOutlineColor(m_color);
 }

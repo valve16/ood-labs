@@ -1,6 +1,5 @@
 #include "CCircle.h"
-
-const std::string NAME = "CIRCLE";
+#include "Constants.h"
 
 CCircle::CCircle(sf::Vector2f& center, float radius)
     : m_center(center)
@@ -23,7 +22,7 @@ float CCircle::GetRadius() const
 
 std::string CCircle::ToString() const
 {
-    return NAME;
+    return CIRC_TYPE_H;
 }
 
 sf::CircleShape CCircle::GetCircle() const

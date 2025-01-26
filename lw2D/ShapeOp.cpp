@@ -1,10 +1,12 @@
 #include "ShapeOp.h"
+#include "Constants.h"
+
 using namespace sf;
  
-const std::string RECT_TYPE = "RECTANGLE";
-const std::string TRIANGLE_TYPE = "TRIANGLE";
-const std::string CIRC_TYPE = "CIRCLE";
-const char EQ_SIGN = '=';
+//const std::string RECT_TYPE_H = "RECTANGLE";
+//const std::string TRIANGLE_TYPE_H = "TRIANGLE";
+//const std::string CIRC_TYPE_H = "CIRCLE";
+//const char EQ_SIGN = '=';
 
 ShapeOp& ShapeOp::GetInstance(sf::RenderWindow& window)
 {
@@ -30,7 +32,7 @@ std::vector<std::shared_ptr<IShape>> ShapeOp::ReadShapesFromFileToVector(const s
 
     if (!file.is_open())
     {
-        std::cerr << "Ошибка открытия файла: " << filename << std::endl;
+        std::cerr << ERR_OPEN_MSG << filename << std::endl;
         return shapes;
     }
 
@@ -46,7 +48,7 @@ std::vector<std::shared_ptr<IShape>> ShapeOp::ReadShapesFromFileToVector(const s
 
         // Чтение типа фигуры
         std::getline(iss, shapeType, ':');
-        if (shapeType == TRIANGLE_TYPE)
+        if (shapeType == TRIANGLE_TYPE_H)
         {
             std::vector<sf::Vector2f> points;
             points.resize(3);
@@ -57,9 +59,9 @@ std::vector<std::shared_ptr<IShape>> ShapeOp::ReadShapesFromFileToVector(const s
                 std::istringstream pointStream(line);
                 pointStream >> points[i].x >> ignore >> points[i].y;
             }
-            shapes.push_back(std::make_unique<CConvex>(points[0], points[1], points[2]));
+            shapes.push_back(std::make_unique<CConvex>(points[FIRST_POINT], points[SECOND_POINT], points[THIRD_POINT]));
         }
-        else if (shapeType == RECT_TYPE)
+        else if (shapeType == RECT_TYPE_H)
         {
             std::vector<sf::Vector2f> points;
             points.resize(2);
@@ -70,9 +72,9 @@ std::vector<std::shared_ptr<IShape>> ShapeOp::ReadShapesFromFileToVector(const s
                 std::istringstream pointStream(line);
                 pointStream >> points[i].x >> ignore >> points[i].y;
             }
-            shapes.push_back(std::make_unique<CRectangle>(points[0], points[1]));
+            shapes.push_back(std::make_unique<CRectangle>(points[FIRST_POINT], points[SECOND_POINT]));
         }
-        else if (shapeType == CIRC_TYPE)
+        else if (shapeType == CIRC_TYPE_H)
         {
             sf::Vector2f center;
             float radius;

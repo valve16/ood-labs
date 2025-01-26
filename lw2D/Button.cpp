@@ -1,5 +1,5 @@
 #include "Button.h"
-
+#include "Constants.h"
 
 Button::Button(
     Vector2f position, Vector2f sizeRectangle,
@@ -10,7 +10,7 @@ Button::Button(
     m_rectangle.setSize(sizeRectangle);
     m_rectangle.setFillColor(buttonColor);
 
-    if (m_font.loadFromFile("arialmt.ttf")) {
+    if (m_font.loadFromFile(FONT_FILE)) {
         m_text.setFont(m_font);
         m_text.setString(text);
         m_text.setFillColor(textColor);

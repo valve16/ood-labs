@@ -2,8 +2,8 @@
 
 ChangeOutlineThicknessVisitor::ChangeOutlineThicknessVisitor(float thickness) :m_thickness(thickness) {}
 
-void ChangeOutlineThicknessVisitor::VisitFigure(std::shared_ptr<IShape> decorator) 
+void ChangeOutlineThicknessVisitor::VisitFigure(std::shared_ptr<IShape> shape) 
 {	
-	std::cout << (m_thickness);
-	decorator->SetOutlineThickness(m_thickness);
+	//std::cout << (m_thickness);
+	shape->SetOutlineThickness(m_thickness);
 }

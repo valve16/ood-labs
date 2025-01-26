@@ -29,7 +29,7 @@ void CCompositeShape::Select() {
     for (auto& shape : m_shapes)
     {
         shape->Select();
-        std::cout << shape->ToString() << " " << shape->IsSelected() << "; " << m_isSelected << "\n";
+       
     }
 }
 
@@ -55,7 +55,6 @@ void CCompositeShape::Move(const sf::Vector2f& offset)
     for (auto& shape : m_shapes)
     {
         shape->Move(offset);
-        //std::cout << "moved";
     }
 }
 
@@ -64,7 +63,6 @@ void CCompositeShape::SetFillColor(const sf::Color& color)
     for (auto& shape : m_shapes)
     {
         shape->SetFillColor(color);
-        //std::cout << "moved";
     }
 }
 

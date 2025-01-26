@@ -12,34 +12,28 @@ public:
     Toolbar(State* state, sf::RenderWindow& window, CFiguresHandler* figureHandler);
 
     void SetCursorPosition(const sf::Vector2i& position);
+    bool PressToolButton() const;
     
 
     void AddOutlineThickness();
-
     void ReduceOutlineThickness();
+    float GetOutlineThickness() const;
 
     void DragAndDrop();
-
     void FillShape();
-
     void FillOutline();
 
+    void SetState(State* state);
+    State* GetState() const;
+
     void SetColor(const sf::Color& newColor) ;
+    sf::Color GetColor() const;
 
     //void SetOutlineColor(const sf::Color& newColor);
 
     void CreateRectangle();
     void CreateTriangle();
     void CreateCircle();
-    void SetState(State* state);
-
-    State* GetState() const;
-
-    sf::Color GetColor() const;
-    float GetOutlineThickness() const;
-
-    bool PressToolButton() const;
-
 
     void Draw();
 

@@ -1,8 +1,9 @@
 #include "SaveBinStrategy.h"
+#include "Constants.h"
 
 void CSaveBinStrategy::Save(std::string filename, std::vector<std::shared_ptr<IShape>> figures)
 {
-    std::ofstream output(filename + ".bin", std::ios::binary);
+    std::ofstream output(filename + BIN_FILE, std::ios::binary);
 
     std::size_t size = figures.size();
     output.write((char*)&size, sizeof(size));

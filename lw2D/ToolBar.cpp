@@ -1,4 +1,3 @@
-
 #include "State.h"
 #include "DragAndDropCommand.h"
 #include "CreateRectangleCommand.h"
@@ -16,44 +15,32 @@
 #include "DnDState.h"
 #include "FillShapeState.h"
 #include "FillOutlineState.h"
-
-
-const int BTN_WIDTHS = 48;
-const int BTN_HEIGHTS = 194;
-const int BTN_WIDTH = 36;
-const int BTN_HEIGHT = 90;
+#include "Constants.h"
 
 Toolbar::Toolbar(State* state, sf::RenderWindow& window, CFiguresHandler* figureHandler)
     : window(window), figureHandler(figureHandler), m_state(state) {
 
-    m_buttons.push_back(new Button(Vector2f(643, 10), Vector2f(BTN_HEIGHTS, BTN_WIDTHS), Color::White, new DragAndDropCommand(this), "Drag&Drop", 20));
-    m_buttons.push_back(new Button(Vector2f(851, 10), Vector2f(BTN_HEIGHTS, BTN_WIDTHS), Color::White, new FillShapeCommand(this), "Fill shape", 20));
-    m_buttons.push_back(new Button(Vector2f(1064, 10), Vector2f(BTN_HEIGHTS, BTN_WIDTHS), Color::White, new FillOutlineCommand(this), "Fill outline", 20));
+    m_buttons.push_back(new Button(Vector2f(643, 10), Vector2f(BTN_HEIGHTS, BTN_WIDTHS), Color::White, new DragAndDropCommand(this), BTN_DND_TEXT, BTN_FONT_SIZE));
+    m_buttons.push_back(new Button(Vector2f(851, 10), Vector2f(BTN_HEIGHTS, BTN_WIDTHS), Color::White, new FillShapeCommand(this), BTN_FILLSHAPE_TEXT, BTN_FONT_SIZE));
+    m_buttons.push_back(new Button(Vector2f(1064, 10), Vector2f(BTN_HEIGHTS, BTN_WIDTHS), Color::White, new FillOutlineCommand(this), BTN_FILLOUTLINE_TEXT, BTN_FONT_SIZE));
     //m_buttons.push_back(new Button(Vector2f(1287, 10), Vector2f(BTN_HEIGHTS, BTN_WIDTHS), Color::White, new ChangeOutlineThicknessCommand(this), "Change thickness", 20));
 
     m_buttons.push_back(new Button(Vector2f(19, 68), Vector2f(BTN_HEIGHT, BTN_WIDTH), Color::Red, new SetRedColorCommand(this)));
     m_buttons.push_back(new Button(Vector2f(143, 68), Vector2f(BTN_HEIGHT, BTN_WIDTH), Color::Green, new SetGreenColorCommand(this)));
     m_buttons.push_back(new Button(Vector2f(267, 68), Vector2f(BTN_HEIGHT, BTN_WIDTH), Color::Blue, new SetBlueColorCommand(this)));
 
-    m_buttons.push_back(new Button(Vector2f(1053, 68), Vector2f(212, BTN_WIDTH), Color::White, new ReduceThicknessCommand(this), "-", 40));
-    m_buttons.push_back(new Button(Vector2f(1269, 68), Vector2f(212, BTN_WIDTH), Color::White, new AddOutlineThicknessCommand(this), "+", 40));
+    m_buttons.push_back(new Button(Vector2f(1053, 68), Vector2f(BTN_HEIGHTS, BTN_WIDTH), Color::White, new ReduceThicknessCommand(this), PLUS_SIGN, BTN_FONT_SIZE_H));
+    m_buttons.push_back(new Button(Vector2f(1269, 68), Vector2f(BTN_HEIGHTS, BTN_WIDTH), Color::White, new AddOutlineThicknessCommand(this), MINUS_SIGN, BTN_FONT_SIZE_H));
 
-    m_buttons.push_back(new Button(Vector2f(19, 10), Vector2f(BTN_HEIGHTS, BTN_WIDTHS), Color::White, new CreateCircleCommand(this), "Create Circle", 20));
-    m_buttons.push_back(new Button(Vector2f(435, 10), Vector2f(BTN_HEIGHTS, BTN_WIDTHS), Color::White, new CreateRectangleCommand(this), "Create Rectangle", 20));
-    m_buttons.push_back(new Button(Vector2f(227, 10), Vector2f(BTN_HEIGHTS, BTN_WIDTHS), Color::White, new CreateTriangleCommand(this), "Create Triangle", 20));
+    m_buttons.push_back(new Button(Vector2f(19, 10), Vector2f(BTN_HEIGHTS, BTN_WIDTHS), Color::White, new CreateCircleCommand(this), BTN_CREATE_CIRC_TEXT, BTN_FONT_SIZE));
+    m_buttons.push_back(new Button(Vector2f(435, 10), Vector2f(BTN_HEIGHTS, BTN_WIDTHS), Color::White, new CreateRectangleCommand(this), BTN_CREATE_RECT_TEXT, BTN_FONT_SIZE));
+    m_buttons.push_back(new Button(Vector2f(227, 10), Vector2f(BTN_HEIGHTS, BTN_WIDTHS), Color::White, new CreateTriangleCommand(this), BTN_CREATE_TRIANG_TEXT, BTN_FONT_SIZE));
 }
 
 void Toolbar::SetCursorPosition(const sf::Vector2i& position) {
     cursorPosition = position;
 }
 
-//void Toolbar::SetFiguresCreateVisible() {
-//    for (auto button : m_buttons) {
-//        if (button.GetId() == 2) {
-//            button.SetVisibleState();
-//        }
-//    }
-//}
 
 void Toolbar::AddOutlineThickness() {
     //if (outlineThickness < 5.0f) {
@@ -141,7 +128,7 @@ sf::Color Toolbar::GetColor() const {
 }
 
 float Toolbar::GetOutlineThickness() const {
-    printf("1");
+    std::cout << outlineThickness;
     return outlineThickness;
 }
 

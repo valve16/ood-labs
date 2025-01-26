@@ -9,26 +9,27 @@
 #include <iostream>
 #include "SaveTextFileStrategy.h"
 #include "SaveBinStrategy.h"
+#include "Constants.h"
 using namespace sf;
 
 
 int main()
 {
-    RenderWindow window(VideoMode(1500, 1000), L"Новый проект", Style::Default);
+    RenderWindow window(VideoMode(WIDTH_WINDOW, HEIGHT_WINDOW), PROJECT_NAME, Style::Default);
     window.setVerticalSyncEnabled(true);
 
     ShapeOp& operations = ShapeOp::GetInstance(window);
 
     std::vector<std::shared_ptr<IShape>> shapes;
-    shapes = operations.ReadShapesFromFileToVector("in.txt");
+    shapes = operations.ReadShapesFromFileToVector(INPUT_FILE);
     operations.RenderShapesFromVector(shapes);
 
     CSaveTextFileStrategy textSaver;
     std::cout << shapes.size();
-    textSaver.Save("output_text", shapes);
+    textSaver.Save(OUT_TXT_FILE, shapes);
 
     CSaveBinStrategy binSaver;
-    binSaver.Save("output_bin", shapes);
+    binSaver.Save(OUT_BIN_FILE, shapes);
 
     return 0;
 }

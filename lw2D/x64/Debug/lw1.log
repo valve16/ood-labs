@@ -1,8 +1,2 @@
-﻿  CCircle.cpp
-D:\ПГТУ\ood-labs\lw2D\CCircle.cpp(7,15): warning C4244: инициализация: преобразование "float" в "int", возможна потеря данных
-D:\ПГТУ\ood-labs\lw2D\CCircle.cpp(9,29): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-D:\ПГТУ\ood-labs\lw2D\CCircle.cpp(21,12): warning C4244: return: преобразование "const int" в "float", возможна потеря данных
-  CConvex.cpp
-  CRectangle.cpp
-  Создание кода...
+﻿  Memento.cpp
   lw1.vcxproj -> D:\ПГТУ\ood-labs\lw2D\x64\Debug\lw1.exe

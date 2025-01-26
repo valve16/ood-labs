@@ -1,5 +1,5 @@
 #include "CConvex.h"
-
+#include "Constants.h"
 const std::string NAME = "CONVEX";
 
 CConvex::CConvex(sf::Vector2f& firstPoint, sf::Vector2f& secondPoint, sf::Vector2f& thirdPoint)
@@ -12,9 +12,9 @@ CConvex::CConvex(sf::Vector2f& firstPoint, sf::Vector2f& secondPoint, sf::Vector
 	m_convexShape.setPointCount(3);
 
 	// Задаем вершины треугольника
-	m_convexShape.setPoint(0, m_p1);
-	m_convexShape.setPoint(1, m_p2);
-	m_convexShape.setPoint(2, m_p3);
+	m_convexShape.setPoint(FIRST_POINT, m_p1);
+	m_convexShape.setPoint(SECOND_POINT, m_p2);
+	m_convexShape.setPoint(THIRD_POINT, m_p3);
 
 	// Устанавливаем цвет треугольника для наглядности
 	m_convexShape.setFillColor(sf::Color::Green);

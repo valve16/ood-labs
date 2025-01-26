@@ -214,6 +214,7 @@ sfml-network-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     <ClInclude Include="CFiguresHandler.h" />
     <ClInclude Include="ChangeOutlineThicknessVisitor.h" />
     <ClInclude Include="Command.h" />
+    <ClInclude Include="Constants.h" />
     <ClInclude Include="CreateCircleCommand.h" />
     <ClInclude Include="CreateRectangleCommand.h" />
     <ClInclude Include="CreateTriangleCommand.h" />

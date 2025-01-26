@@ -7,6 +7,7 @@
 #include <sstream>
 #include <fstream>
 
+
 class SaveFileStrategy {
 public:
 	virtual void Save(std::string filename, std::vector<std::shared_ptr<IShape>> figures) = 0;
