@@ -20,7 +20,6 @@ Memento::Memento(const std::vector<std::shared_ptr<IShape>>& state)
             m_state.push_back(std::make_shared<CConvex>(rectangle));
         }
         else if (auto composite = std::dynamic_pointer_cast<CCompositeShape>(shape)) {
-            // ≈сли фигура €вл€етс€ составной, рекурсивно сохран€ем все еЄ внутренние фигуры
             auto compositeCopy = std::make_shared<CCompositeShape>();
             for (const auto& innerShape : composite->GetShapes()) {
                 if (dynamic_cast<CCircle*>(innerShape.get())) {
@@ -36,7 +35,6 @@ Memento::Memento(const std::vector<std::shared_ptr<IShape>>& state)
                     compositeCopy->AddShape(std::make_shared<CConvex>(convex));
                 }
                 else if (auto innerComposite = std::dynamic_pointer_cast<CCompositeShape>(innerShape)) {
-                    // –екурсивно обрабатываем вложенные составные фигуры
                     compositeCopy->AddShape(std::make_shared<CCompositeShape>(*innerComposite));
                 }
             }
